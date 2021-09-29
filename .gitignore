@@ -1,0 +1,24 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+web/adludio-front/node_modules
+web/adludio-front/.pnp
+web/adludio-front.pnp.js
+
+# testing
+web/adludio-front/coverage
+
+# production
+web/adludio-front/build
+
+# misc
+web/adludio-front/.DS_Store
+web/adludio-front/.env.local
+web/adludio-front/.env.development.local
+web/adludio-front/.env.test.local
+web/adludio-front/.env.production.local
+
+web/adludio-front/npm-debug.log*
+web/adludio-front/yarn-debug.log*
+web/adludio-front/yarn-error.log*
+web/adludio-front/node_modules/.bin/acorn
