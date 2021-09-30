@@ -48,4 +48,3 @@ def bar_plot(x, y, df):
   plt.figure(figsize=(12,6))
   plt.xticks(rotation=20)
   sns.barplot(x=x, y=y, data=df)
-  
