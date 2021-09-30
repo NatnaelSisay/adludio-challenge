@@ -1,0 +1,5 @@
+.table-view{
+    max-height: 15em;
+    overflow: scroll;
+    /* background-color: black; */
+}
