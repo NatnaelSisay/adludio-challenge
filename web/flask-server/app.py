@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 import pandas as pd
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join('../..')))
+sys.path.append(os.path.abspath(os.path.join('../..'))) # to import python modules from parrent directory
 
 from my_scripts.helper import best_performers, read_csv
 
