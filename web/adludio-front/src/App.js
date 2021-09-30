@@ -3,67 +3,91 @@ import React, { useEffect, useState } from 'react'
 
 import axios from 'axios'
 
+const BASE_URL = 'http://127.0.0.1:5000'
+const DEFAULT = 'default'
+const CAMPAIN_ID  = 'CampaignId'
+
 function App () {
-  const [codes, setSoces] = useState()
-  const [selectedCode, setSelectedCode] = useState('')
+  const [campainIds, setCampainIds] = useState()
+  const [selectedCampainId, setSelectedCampainId] = useState('')
   const [filterResult, setFilterResult] = useState([])
 
-  useEffect(() => {
-    axios.get('http://127.0.0.1:5000/').then(res => {
-      // console.log(res.data['CampainId'])
-      const result = res.data.CampainId
-      setSoces(result)
-    })
-  }, [])
+  // ---- CUSTOM FUNCTIONS ---- //
+  const fetchSitesOfSelectedCampain = () => {
+    if (!selectedCampainId | selectedCampainId === DEFAULT) { return }
 
-  const getListing = () => {
-    if (!selectedCode | selectedCode === 'default') { return }
-
-    axios.get(`http://127.0.0.1:5000/${selectedCode}`)
+    axios.get(`${BASE_URL}/${selectedCampainId}`)
       .then(res => {
-        const data = res.data[selectedCode]
+        const data = res.data[selectedCampainId]
         setFilterResult(data)
-        console.log(data)
       })
   }
 
-  const handleSelectChange = (e) => {
-    setSelectedCode(e.target.value)
-  }
+  // ---- CUSTOM FUNCTIONS ---- //
 
-  console.log('selected code ', selectedCode)
+  useEffect(() => {
+    axios.get(BASE_URL).then(res => {
+      const result = res.data[CAMPAIN_ID]
+      setCampainIds(result)
+    })
+  }, [])
+
   return (
-    <div className='App'>
+    <div className='layout-container'>
 
-      <select value={selectedCode} onChange={(e) => handleSelectChange(e)}>
-        <option key='default' value='default'>Choose Code </option>
-        {
-              codes?.map(code => {
-                return <option key={code}>{code}</option>
-              })
-        }
-      </select>
+      <div className='container'>
 
-      <button onClick={() => getListing()}>Get Top Sites</button>
+        <aside>
+          <select
+            value={selectedCampainId}
+            onChange={(e) => setSelectedCampainId(e.target.value)}
+            className='select-options'
+          >
+            <option key={DEFAULT} value={DEFAULT}>Campain Id's </option>
+            {
+                campainIds?.map(code => {
+                  return <option key={code}>{code}</option>
+                })
+          }
+          </select>
 
-      {
+          <button
+            onClick={() => fetchSitesOfSelectedCampain()}
+            className='aside-button'
+          >Get Top Sites
+          </button>
+        </aside>
+
+        <main>
+
+          {
         filterResult.length
           ? <div>
-            <h2>Total Result {filterResult.length}</h2>
+            <h2>Total Result <span className='badge'>{filterResult.length}</span> </h2>
             <ul className='table-view'>
               {
                       filterResult?.map((element, index) => {
                         return (
-                          <li key={index}>{element} </li>
+                          <li key={index}>
+                            <a
+                              rel='external'
+                              className='fab fa-instagram'
+                              href={`http://${element}`}
+                            >
+                              {index + 1}. {element}
+                            </a>
+                          </li>
                         )
                       })
                     }
             </ul>
-          </div>
+            </div>
 
           : ''
       }
+        </main>
 
+      </div>
     </div>
   )
 }
