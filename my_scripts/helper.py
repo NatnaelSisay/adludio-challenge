@@ -1,7 +1,17 @@
 import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
 def best_performers(df, campain_id):
+    '''
+    Return DataFrame ordered by score value
+      columns: engagement, engagement-count, score
+
+    score = engagement ** 2 / engagement-count
+    '''
+
     df = df.copy()
     
     campains_score = df.groupby('CampaignId').get_group(campain_id)
@@ -20,9 +30,22 @@ def best_performers(df, campain_id):
 
 
 def read_csv(file_path):
+  '''
+  Return DataFrame with the provided file path
+  '''
   try:
     df = pd.read_csv(file_path)
     return df
   except FileNotFoundError as e:
     print(e)
     return {"ERROR": "File path Not Correct"}
+
+
+def bar_plot(x, y, df):
+  '''
+    Plot Bar chart 
+  '''
+  plt.figure(figsize=(12,6))
+  plt.xticks(rotation=20)
+  sns.barplot(x=x, y=y, data=df)
+  
