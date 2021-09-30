@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(app)
 
 FILE_PATH   = '../../data/impression_log.csv'
-CAMPAIN_ID  = 'CampainId'
+CAMPAIN_ID  = 'CampaignId'
 SITE        = 'Site'
 
 # Route to send all CamapinID's

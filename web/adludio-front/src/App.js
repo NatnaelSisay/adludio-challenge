@@ -5,6 +5,7 @@ import axios from 'axios'
 
 const BASE_URL = 'http://127.0.0.1:5000'
 const DEFAULT = 'default'
+const CAMPAIN_ID  = 'CampaignId'
 
 function App () {
   const [campainIds, setCampainIds] = useState()
@@ -26,7 +27,7 @@ function App () {
 
   useEffect(() => {
     axios.get(BASE_URL).then(res => {
-      const result = res.data.CampainId
+      const result = res.data[CAMPAIN_ID]
       setCampainIds(result)
     })
   }, [])
