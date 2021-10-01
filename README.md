@@ -1,5 +1,10 @@
 # Adludio - Challenge
 
+This is Adludio Challenge, In this challenge I have tried to tackle the following tasks
+- **Task - 1** : Filter out top scoring sites given CampaignId
+- **Task - 2** : Develop Basic Web app with React Front-end and Flask-Backend
+- **Task - 3** : Perform Feature importance with jupyter notebook using machine learning models
+
 ## Instalation GUIDE
 - Clone the project to your local machine
     - `git clone https://github.com/NatnaelSisay/adludio-challenge.git`
