@@ -1,6 +1,6 @@
 # Adludio - Challenge
 ![first display image](images/first.png)
-![first display image](images/second.png)
+![second display image](images/second.png)
 
 This is Adludio Challenge, In this challenge I have tried to tackle the following tasks
 - **Task - 1** : Filter out top scoring sites given CampaignId
